@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "ecfad4c0-275e-11e7-a54d-3da445cada88",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Log",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"a9607710-275e-11e7-a54d-3da445cada88\",\"panelIndex\":1,\"row\":1,\"size_x\":6,\"size_y\":3,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"colors\":{\"error\":\"#BF1B00\"}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-1h",
+      "refreshInterval": {
+        "display": "5 seconds",
+        "pause": false,
+        "section": 1,
+        "value": 5000
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "a9607710-275e-11e7-a54d-3da445cada88",
+    "_type": "visualization",
+    "_source": {
+      "title": "Log events",
+      "visState": "{\"title\":\"Log events\",\"type\":\"area\",\"params\":{\"addLegend\":true,\"addTimeMarker\":false,\"addTooltip\":true,\"defaultYExtents\":false,\"interpolate\":\"linear\",\"legendPosition\":\"right\",\"mode\":\"stacked\",\"scale\":\"linear\",\"setYExtents\":false,\"times\":[]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"Events\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"level\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Level\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"source\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"_term\",\"customLabel\":\"Source\",\"row\":true}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"logs\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  }
+]

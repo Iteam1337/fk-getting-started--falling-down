@@ -5,16 +5,13 @@ services:
     ports:
       - 5672:5672
       - 15672:15672
-
   schedule:
     build: ./schedule
     ports:
       - 8000:8000
-    links:
-      - postgres
-      - rabbitmq
     environment:
-      - RABBIT_MQ__HOST=amqp://rabbitmq:15672
+      - LOG_LEVEL=warn
+      - RABBITMQ__HOST=amqp://rabbitmq
       - POSTGRES__HOST=postgres://postgres:5432
   postgres:
     image: postgres:9.6
@@ -24,28 +21,22 @@ services:
       - POSTGRES_DB=pgdb
     ports:
       - 5432:5432
-
-  #dispatch:
-  #  build: ./dispatch
-  #  ports:
-  #    - 4000:4000
-  #  links:
-  #    - rabbitmq
-  #    - redis
-  #  environment:
-  #    - RABBIT_MQ__HOST=amqp://rabbitmq:15672
-  #    - REDIS__HOST=redis
-  #    - REDIS__PORT=6379
-
+  dispatch:
+    build: ./dispatch
+    ports:
+      - 4000:4000
+    environment:
+      - PORT=4000
+      - LOG_LEVEL=warn
+      - RABBITMQ__HOST=amqp://rabbitmq
   logs:
     build: ./logs
     ports:
       - 3000:3000
-    links:
-      - rabbitmq
-      - elasticsearch
     environment:
-      - RABBIT_MQ__HOST=amqp://rabbitmq:15672
+      - PORT=3000
+      - LOG_LEVEL=warn
+      - RABBITMQ__HOST=amqp://rabbitmq
       - ELASTICSEARCH__HOST=http://elasticsearch:9200
   elasticsearch:
     image: elasticsearch:5.3
@@ -55,7 +46,5 @@ services:
     image: kibana:5.3
     ports:
       - 5601:5601
-    links:
-      - elasticsearch
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
