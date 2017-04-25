@@ -12,7 +12,7 @@ services:
     environment:
       - LOG_LEVEL=warn
       - RABBITMQ__HOST=amqp://rabbitmq
-      - POSTGRES__HOST=postgres://postgres:5432
+      - POSTGRES__HOST=postgresql://pguser:pgpass@postgres:5432/pgdb
   postgres:
     image: postgres:9.6
     environment:

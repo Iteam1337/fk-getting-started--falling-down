@@ -32,6 +32,7 @@
 
 ## Works on my machine
 
+- Time zones
 - Missing configuration
   - Setting up environments is not done every day and should not be rushed
   - Never trust your edited config - test it
