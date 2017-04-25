@@ -8,7 +8,7 @@ services:
   schedule:
     build: ./schedule
     ports:
-      - 8000:8000
+      - 5000:5000
     environment:
       - LOG_LEVEL=warn
       - RABBITMQ__HOST=amqp://rabbitmq
